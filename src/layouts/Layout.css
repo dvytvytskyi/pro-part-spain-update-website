@@ -1,0 +1,415 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background 0.3s ease;
+}
+
+.app-header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.app-header.scrolled .logo-img {
+  filter: brightness(0);
+}
+
+.app-header.scrolled .app-nav a {
+  color: #313131;
+  text-shadow: none;
+}
+
+.app-header.scrolled .app-nav a::after {
+  background: #313131;
+}
+
+.app-header.scrolled .liked-btn,
+.app-header.scrolled .contact-btn,
+.app-header.scrolled .language-btn,
+.app-header.scrolled .burger-btn {
+  color: #313131;
+  border-color: rgba(0, 0, 0, 0.1);
+  background: transparent;
+}
+
+.app-header.scrolled .contact-btn {
+  background: transparent;
+  color: #313131;
+}
+
+.app-header.scrolled .liked-btn:hover,
+.app-header.scrolled .language-btn:hover,
+.app-header.scrolled .contact-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.app-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.app-nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.app-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.app-nav a:hover::after,
+.app-nav a.active::after {
+  width: 100%;
+}
+
+.app-nav a:hover,
+.app-nav a.active {
+  color: white;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #313131;
+}
+
+.icon-btn:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.liked-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.liked-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.contact-btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.contact-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.language-selector {
+  position: relative;
+}
+
+.language-btn {
+  padding: 0 1rem;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 120px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: rgba(49, 49, 49, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  min-width: 140px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.language-dropdown button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.language-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.language-dropdown button.active {
+  background: white;
+  color: #313131;
+}
+
+/* Scrolled State for Language Dropdown */
+.app-header.scrolled .language-dropdown {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.app-header.scrolled .language-dropdown button {
+  color: #666;
+}
+
+.app-header.scrolled .language-dropdown button:hover {
+  background: #f5f5f5;
+  color: #313131;
+}
+
+.app-header.scrolled .language-dropdown button.active {
+  background: #313131;
+  color: white;
+}
+
+.app-content {
+  flex: 1;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #313131;
+  color: var(--text-color-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Burger Button & Menu */
+.burger-btn {
+  display: none;
+  z-index: 1001;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  /* Force white on hero */
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  z-index: 900;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.mobile-nav a {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: color 0.3s;
+}
+
+.mobile-nav a:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .app-header {
+    padding: 1rem 1.5rem;
+    z-index: 1000;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .burger-btn {
+    display: flex;
+  }
+
+  .header-right {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav a {
+    font-size: 1.25rem;
+  }
+
+  .app-header {
+    padding: 1rem;
+  }
+
+  /* Simplify header on mobile */
+  .liked-btn,
+  .language-selector {
+    display: none;
+  }
+}
+
+/* Hide header icons when menu is open */
+.app-header.menu-open .contact-btn,
+.app-header.menu-open .liked-btn,
+.app-header.menu-open .language-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile Language Switcher Styles */
+.mobile-languages {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.mobile-lang-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #313131;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-lang-btn.active {
+  background: #313131;
+  color: white;
+  border-color: #313131;
+}

@@ -1,0 +1,232 @@
+.catalog-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.catalog-modal-container {
+    background: white;
+    width: 100%;
+    max-width: 900px;
+    min-height: 500px;
+    border-radius: 32px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: scaleIn 0.3s 0.1s forwards;
+}
+
+.catalog-modal-left {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: left;
+}
+
+.catalog-modal-brand {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #313131;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+.catalog-modal-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.catalog-modal-title span {
+    color: #7ca87e;
+    /* Accent color matching image or site style */
+}
+
+.catalog-modal-description {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.catalog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.phone-input-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.country-select-wrapper {
+    position: relative;
+    width: 130px;
+    display: flex;
+    align-items: center;
+}
+
+.country-select {
+    width: 100%;
+    padding: 0.875rem 2rem 0.875rem 0.75rem;
+    /* Space for arrow */
+    background: #f5f5f5;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    font-weight: 500;
+    height: 52px;
+    color: #313131;
+}
+
+.country-arrow {
+    position: absolute;
+    right: 0.75rem;
+    pointer-events: none;
+    color: #666;
+}
+
+.country-select:focus {
+    outline: none;
+    background: #fff;
+    border-color: #313131;
+}
+
+.phone-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    background: #f5f5f5;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    height: 52px;
+}
+
+.phone-input:focus {
+    outline: none;
+    background: #fff;
+    border-color: #313131;
+}
+
+.submit-btn {
+    padding: 1rem;
+    background: #313131;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    background: #000;
+    transform: translateY(-1px);
+}
+
+.catalog-modal-footer {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.catalog-modal-footer a {
+    color: #666;
+    text-decoration: underline;
+}
+
+.catalog-modal-right {
+    flex: 1;
+    background-image: url('/images/catalog-popup.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-modal-container {
+        flex-direction: column-reverse;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .catalog-modal-right {
+        height: 200px;
+        flex: none;
+    }
+
+    .catalog-modal-left {
+        padding: 2rem;
+    }
+
+    .catalog-modal-title {
+        font-size: 1.75rem;
+    }
+}

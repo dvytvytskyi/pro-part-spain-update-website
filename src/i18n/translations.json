@@ -1,0 +1,698 @@
+{
+    "en": {
+        "nav": {
+            "home": "Home",
+            "newBuilding": "New Building",
+            "secondary": "Secondary",
+            "rent": "Rent",
+            "map": "Map",
+            "areas": "Areas",
+            "about": "About Us",
+            "contact": "Contact",
+            "news": "Market News"
+        },
+        "header": {
+            "contactUs": "Contact Us",
+            "languages": "Languages"
+        },
+        "hero": {
+            "title": "Luxury Real Estate in Spain",
+            "subtitle": "Find your dream property on the Costa del Sol"
+        },
+        "search": {
+            "placeholder": "Select your area",
+            "selected": "{count} areas selected",
+            "tabs": {
+                "new": "Off plan",
+                "secondary": "Secondary",
+                "rent": "Rent"
+            }
+        },
+        "about": {
+            "title": "We are passionate about empowering you to find your dream home in Costa del Sol.",
+            "description": "We are dedicated to redefining the real estate experience. Our team is committed to providing personalized and innovative solutions that empower buyers to make confident decisions and achieve their property goals in Spain.",
+            "stats": {
+                "satisfaction": "Customer satisfaction rate, reflecting our dedication",
+                "years": "Years of local market expertise and innovation",
+                "value": "Value of property transactions successfully managed",
+                "clients": "Happy clients served worldwide with premium solutions"
+            }
+        },
+        "featured": {
+            "title": "Our Exclusive Catalog\n2025 Collection",
+            "description": "Experience the pinnacle of luxury living on the Costa del Sol. Our curated selection features modern architecture and premium locations.",
+            "openCatalog": "Open Catalog"
+        },
+        "experience": {
+            "label": "PROPART REAL ESTATE",
+            "title": "With over a decade of experience, we deliver tailored solutions that empower you to find your dream home in Costa del Sol.",
+            "stats": {
+                "satisfaction": "COMPLETE CUSTOMER\nSATISFACTION",
+                "years": "YEARS OF MARKET\nEXPERTISE",
+                "value": "PROPERTY VALUE\nMANAGED",
+                "clients": "HAPPY CLIENTS\nWORLDWIDE"
+            }
+        },
+        "services": {
+            "intro": "Why people choose us",
+            "title": "We're not just lawyers.\nWe're your guide through legal complexity.",
+            "items": {
+                "1": "Plain-language communication.",
+                "2": "Always accessible – in person or online.",
+                "3": "Step-by-step guidance.",
+                "4": "Preventative mindset – not just damage control."
+            },
+            "cards": {
+                "legal": {
+                    "title": "Legal Services",
+                    "desc": "Comprehensive legal support for all your property and business needs."
+                },
+                "goldenVisa": {
+                    "title": "Golden Visa",
+                    "desc": "Obtain residency through property investment."
+                },
+                "concierge": {
+                    "title": "Concierge",
+                    "desc": "Premium lifestyle management and property services."
+                },
+                "insurance": {
+                    "title": "Insurance",
+                    "desc": "Tailored coverage for your peace of mind and asset protection."
+                }
+            }
+        },
+        "areas": {
+            "title": "Explore the Coast"
+        },
+        "news": {
+            "title": "Latest Insights",
+            "viewAll": "View all news"
+        },
+        "property": {
+            "price": "Price",
+            "beds": "Beds",
+            "baths": "Baths",
+            "size": "Size",
+            "built": "Built",
+            "terrace": "Terrace",
+            "plot": "Plot",
+            "ref": "Ref",
+            "description": "Description",
+            "features": "Features",
+            "location": "Location",
+            "similar": "Similar Properties",
+            "contact": "Contact Agent",
+            "callForPrice": "Call for Price",
+            "badge": {
+                "new": "New Development",
+                "rent": "For Rent",
+                "secondary": "Secondary Market"
+            },
+            "form": {
+                "interested": "Interested?",
+                "subtitle": "Request more information or schedule a viewing.",
+                "name": "Your Name",
+                "phone": "Phone Number",
+                "email": "Email Address",
+                "message": "Message",
+                "send": "Send Request",
+                "defaultMessage": "I am interested in {property}. Please provide more details."
+            },
+            "month": "/month"
+        },
+        "filters": {
+            "any": "Any",
+            "all": "All",
+            "min": "Min",
+            "max": "Max",
+            "reset": "Reset",
+            "amenities": "Amenities",
+            "showResults": "Show {count} Properties",
+            "resultsFound": "{count} properties found",
+            "rentTerm": {
+                "long": "Long Term",
+                "short": "Short Term"
+            },
+            "searchPlaceholder": "Search by name or area...",
+            "recommended": "Recommended",
+            "priceRange": "Price Range",
+            "bedrooms": "Bedrooms",
+            "type": "Property Type",
+            "more": "More Filters",
+            "clear": "Clear Filters",
+            "apply": "Apply",
+            "search": "Search",
+            "location": "Location",
+            "sort": {
+                "label": "Sort by",
+                "newest": "Newest",
+                "priceAsc": "Price (Low to High)",
+                "priceDesc": "Price (High to Low)"
+            },
+            "propertyTypes": {
+                "apartment": "Apartment",
+                "house": "House",
+                "plot": "Plot",
+                "commercial": "Commercial"
+            },
+            "studio": "Studio"
+        },
+        "map": {
+            "clusterTitle": "Cluster Properties",
+            "areaTitle": "Properties in Area",
+            "fullList": "Full List",
+            "noProperties": "No properties found in this area.",
+            "loadMore": "Load More ({count} remaining)",
+            "drawArea": "Draw Area",
+            "clearArea": "Clear Area"
+        },
+        "pages": {
+            "newBuilding": {
+                "title": "New Developments in Spain"
+            },
+            "liked": {
+                "titleShared": "Shared List",
+                "titleMy": "My Favorites",
+                "savedCount": "{count} properties saved",
+                "share": "Share List",
+                "copied": "Link Copied!"
+            },
+            "areasPage": {
+                "title": "Discover the\nGolden Coast",
+                "subtitle": "From the vibrant nightlife of Marbella to the tranquil hills of Benahavís.\nFind your perfect location in the heart of the Costa del Sol.",
+                "premiumTitle": "Premium Locations",
+                "premiumDesc": "Exclusive gated communities",
+                "days": "Sunny days per year",
+                "explore": "Start Exploring",
+                "exploreRegions": "Explore Regions",
+                "propertiesCount": "{count} properties"
+            },
+            "newsPage": {
+                "title": "Real Estate Market Pulse",
+                "subtitle": "Essential updates, trends, and expert analysis on the Spanish property market.",
+                "backToNews": "Back to News",
+                "notFound": "Article not found"
+            },
+            "secondary": {
+                "title": "Resale Properties in Spain"
+            },
+            "rent": {
+                "title": "Rentals in Spain"
+            }
+        },
+        "footer": {
+            "tagline": "Your trusted guide to finding the perfect property in Spain. From exclusive villas to high-yield investments.",
+            "discover": "Discover",
+            "company": "Company",
+            "contact": "Contact Us",
+            "rights": "All rights reserved",
+            "privacy": "Privacy",
+            "terms": "Terms",
+            "cookies": "Cookies"
+        },
+        "common": {
+            "readMore": "Read more",
+            "back": "Back",
+            "from": "from",
+            "in": "in",
+            "lastUpdated": "Last updated",
+            "loading": "Loading...",
+            "noResults": "No results found",
+            "addToFav": "Add to Favorites",
+            "removeFromFav": "Remove from Favorites"
+        },
+        "catalog": {
+            "title": "Get access to our",
+            "highlight": "Exclusive Catalog",
+            "description": "Receive the full selection of premium off-plan and secondary properties directly to your phone via WhatsApp or Telegram.",
+            "phonePlaceholder": "Phone number",
+            "submit": "Get Access",
+            "success": "Thank you! We will contact you shortly with the catalog.",
+            "recaptcha": "Protected by reCAPTCHA."
+        }
+    },
+    "es": {
+        "nav": {
+            "home": "Inicio",
+            "newBuilding": "Obra Nueva",
+            "secondary": "Segunda Mano",
+            "rent": "Alquiler",
+            "map": "Mapa",
+            "areas": "Zonas",
+            "about": "Sobre Nosotros",
+            "contact": "Contacto",
+            "news": "Noticias"
+        },
+        "header": {
+            "contactUs": "Contáctenos",
+            "languages": "Idiomas"
+        },
+        "hero": {
+            "title": "Inmobiliaria de Lujo en España",
+            "subtitle": "Encuentra la propiedad de tus sueños en la Costa del Sol"
+        },
+        "search": {
+            "placeholder": "Seleccione su zona",
+            "selected": "{count} zonas seleccionadas",
+            "tabs": {
+                "new": "Obra Nueva",
+                "secondary": "Segunda Mano",
+                "rent": "Alquiler"
+            }
+        },
+        "about": {
+            "title": "Nos apasiona ayudarle a encontrar la casa de sus sueños en la Costa del Sol.",
+            "description": "Nos dedicamos a redefinir la experiencia inmobiliaria. Nuestro equipo se compromete a brindar soluciones personalizadas e innovadoras que permitan a los compradores tomar decisiones seguras y alcanzar sus objetivos inmobiliarios en España.",
+            "stats": {
+                "satisfaction": "Tasa de satisfacción del cliente, reflejando nuestra dedicación",
+                "years": "Años de experiencia en el mercado local e innovación",
+                "value": "Valor de las transacciones inmobiliarias gestionadas con éxito",
+                "clients": "Clientes felices atendidos en todo el mundo con soluciones premium"
+            }
+        },
+        "featured": {
+            "title": "Nuestro Catálogo Exclusivo\nColección 2025",
+            "description": "Experimente la cumbre de la vida de lujo en la Costa del Sol. Nuestra selección curada presenta arquitectura moderna y ubicaciones premium.",
+            "openCatalog": "Abrir Catálogo"
+        },
+        "experience": {
+            "label": "PROPART REAL ESTATE",
+            "title": "Con más de una década de experiencia, ofrecemos soluciones a medida que le permiten encontrar la casa de sus sueños en la Costa del Sol.",
+            "stats": {
+                "satisfaction": "SATISFACCIÓN TOTAL\nDEL CLIENTE",
+                "years": "AÑOS DE EXPERIENCIA\nEN EL MERCADO",
+                "value": "VALOR DE PROPIEDADES\nGESTIONADO",
+                "clients": "CLIENTES FELICES\nEN TODO EL MUNDO"
+            }
+        },
+        "services": {
+            "intro": "Por qué nos eligen",
+            "title": "No somos solo abogados.\nSomos su guía en la complejidad legal.",
+            "items": {
+                "1": "Comunicación en lenguaje claro.",
+                "2": "Siempre accesibles – en persona o en línea.",
+                "3": "Guía paso a paso.",
+                "4": "Mentalidad preventiva – no solo control de daños."
+            },
+            "cards": {
+                "legal": {
+                    "title": "Servicios Legales",
+                    "desc": "Apoyo legal integral para todas sus necesidades inmobiliarias y comerciales."
+                },
+                "goldenVisa": {
+                    "title": "Golden Visa",
+                    "desc": "Obtenga la residencia a través de la inversión inmobiliaria."
+                },
+                "concierge": {
+                    "title": "Conserjería",
+                    "desc": "Gestión de estilo de vida premium y servicios inmobiliarios."
+                },
+                "insurance": {
+                    "title": "Seguros",
+                    "desc": "Cobertura a medida para su tranquilidad y protección de activos."
+                }
+            }
+        },
+        "areas": {
+            "title": "Explore la Costa"
+        },
+        "news": {
+            "title": "Últimas Noticias",
+            "viewAll": "Ver todas"
+        },
+        "property": {
+            "price": "Precio",
+            "beds": "Dorm.",
+            "baths": "Baños",
+            "size": "Tamaño",
+            "built": "Construido",
+            "terrace": "Terraza",
+            "plot": "Parcela",
+            "ref": "Ref",
+            "description": "Descripción",
+            "features": "Características",
+            "location": "Ubicación",
+            "similar": "Propiedades Similares",
+            "contact": "Contactar Agente",
+            "callForPrice": "Consultar Precio",
+            "badge": {
+                "new": "Obra Nueva",
+                "rent": "En Alquiler",
+                "secondary": "Segunda Mano"
+            },
+            "form": {
+                "interested": "¿Interesado?",
+                "subtitle": "Solicite más información o programe una visita.",
+                "name": "Su Nombre",
+                "phone": "Teléfono",
+                "email": "Correo Electrónico",
+                "message": "Mensaje",
+                "send": "Enviar Solicitud",
+                "defaultMessage": "Estoy interesado en {property}. Por favor envíeme más detalles."
+            },
+            "month": "/mes"
+        },
+        "filters": {
+            "any": "Cualquiera",
+            "all": "Todos",
+            "min": "Mín",
+            "max": "Máx",
+            "reset": "Reiniciar",
+            "amenities": "Comodidades",
+            "showResults": "Mostrar {count} Propiedades",
+            "resultsFound": "{count} propiedades encontradas",
+            "rentTerm": {
+                "long": "Larga Temporada",
+                "short": "Corta Temporada"
+            },
+            "searchPlaceholder": "Buscar por nombre o zona...",
+            "recommended": "Recomendado",
+            "priceRange": "Rango de Precio",
+            "bedrooms": "Dormitorios",
+            "type": "Tipo de Propiedad",
+            "more": "Más Filtros",
+            "clear": "Limpiar Filtros",
+            "apply": "Aplicar",
+            "search": "Buscar",
+            "location": "Ubicación",
+            "sort": {
+                "label": "Ordenar por",
+                "newest": "Más recientes",
+                "priceAsc": "Precio (Bajo a Alto)",
+                "priceDesc": "Precio (Alto a Bajo)"
+            },
+            "propertyTypes": {
+                "apartment": "Apartamento",
+                "house": "Casa",
+                "plot": "Parcela",
+                "commercial": "Comercial"
+            },
+            "studio": "Estudio"
+        },
+        "pages": {
+            "newBuilding": {
+                "title": "Obra Nueva en España"
+            },
+            "liked": {
+                "titleShared": "Lista Compartida",
+                "titleMy": "Mis Favoritos",
+                "savedCount": "{count} propiedades guardadas",
+                "share": "Compartir Lista",
+                "copied": "¡Enlace copiado!"
+            },
+            "areasPage": {
+                "title": "Descubre la\nCosta Dorada",
+                "subtitle": "Desde la vibrante vida nocturna de Marbella hasta las tranquilas colinas de Benahavís.\nEncuentra tu ubicación perfecta en el corazón de la Costa del Sol.",
+                "premiumTitle": "Ubicaciones Premium",
+                "premiumDesc": "Comunidades cerradas exclusivas",
+                "days": "Días de sol al año",
+                "explore": "Empezar a Explorar",
+                "exploreRegions": "Explorar Regiones",
+                "propertiesCount": "{count} propiedades"
+            },
+            "newsPage": {
+                "title": "Perspectivas del Mercado",
+                "subtitle": "Manténgase actualizado con las últimas tendencias, cambios legales y oportunidades de inversión en el mercado inmobiliario español.",
+                "backToNews": "Volver a Noticias",
+                "notFound": "Artículo no encontrado"
+            },
+            "secondary": {
+                "title": "Propiedades de Segunda Mano en España"
+            },
+            "rent": {
+                "title": "Alquileres en España"
+            }
+        },
+        "map": {
+            "clusterTitle": "Propiedades del Grupo",
+            "areaTitle": "Propiedades en el Área",
+            "fullList": "Lista Completa",
+            "noProperties": "No se encontraron propiedades en esta área.",
+            "loadMore": "Cargar Más ({count} restantes)",
+            "drawArea": "Dibujar Área",
+            "clearArea": "Borrar Área"
+        },
+        "footer": {
+            "tagline": "Su guía de confianza para encontrar la propiedad perfecta en España. Desde villas exclusivas hasta inversiones de alto rendimiento.",
+            "discover": "Descubrir",
+            "company": "Empresa",
+            "contact": "Contacto",
+            "rights": "Todos los derechos reservados",
+            "privacy": "Privacidad",
+            "terms": "Términos",
+            "cookies": "Cookies"
+        },
+        "common": {
+            "readMore": "Leer más",
+            "back": "Volver",
+            "from": "desde",
+            "in": "en",
+            "lastUpdated": "Última actualización",
+            "loading": "Cargando...",
+            "noResults": "No se encontraron resultados",
+            "addToFav": "Añadir a Favoritos",
+            "removeFromFav": "Eliminar de Favoritos"
+        },
+        "catalog": {
+            "title": "Obtenga acceso a nuestro",
+            "highlight": "Catálogo Exclusivo",
+            "description": "Reciba la selección completa de propiedades de obra nueva y secundaria premium directamente en su teléfono vía WhatsApp o Telegram.",
+            "phonePlaceholder": "Número de teléfono",
+            "submit": "Obtener Acceso",
+            "success": "¡Gracias! Nos pondremos en contacto con usted en breve con el catálogo.",
+            "recaptcha": "Protegido por reCAPTCHA."
+        }
+    },
+    "ru": {
+        "nav": {
+            "home": "Главная",
+            "newBuilding": "Новостройки",
+            "secondary": "Вторичка",
+            "rent": "Аренда",
+            "map": "Карта",
+            "areas": "Районы",
+            "about": "О нас",
+            "contact": "Контакты",
+            "news": "Новости"
+        },
+        "header": {
+            "contactUs": "Связаться с нами",
+            "languages": "Языки"
+        },
+        "hero": {
+            "title": "Элитная недвижимость в Испании",
+            "subtitle": "Найдите недвижимость своей мечты на Коста-дель-Соль"
+        },
+        "search": {
+            "placeholder": "Выберите район",
+            "selected": "Выбрано районов: {count}",
+            "tabs": {
+                "new": "Новостройки",
+                "secondary": "Вторичка",
+                "rent": "Аренда"
+            }
+        },
+        "about": {
+            "title": "Мы страстно желаем помочь вам найти дом вашей мечты на Коста-дель-Соль.",
+            "description": "Мы стремимся переосмыслить опыт работы с недвижимостью. Наша команда стремится предоставлять персонализированные и инновационные решения, которые позволяют покупателям принимать уверенные решения и достигать своих целей в сфере недвижимости в Испании.",
+            "stats": {
+                "satisfaction": "Уровень удовлетворенности клиентов, отражающий нашу преданность делу",
+                "years": "Лет экспертизы на местном рынке и инноваций",
+                "value": "Стоимость успешно проведенных сделок с недвижимостью",
+                "clients": "Довольных клиентов по всему миру с премиальными решениями"
+            }
+        },
+        "featured": {
+            "title": "Наш Эксклюзивный Каталог\nКоллекция 2025",
+            "description": "Испытайте вершину роскошной жизни на Коста-дель-Соль. Наша кураторская подборка включает современную архитектуру и премиальные локации.",
+            "openCatalog": "Открыть Каталог"
+        },
+        "experience": {
+            "label": "PROPART REAL ESTATE",
+            "title": "Имея более чем десятилетний опыт, мы предлагаем индивидуальные решения, которые помогут вам найти дом вашей мечты на Коста-дель-Соль.",
+            "stats": {
+                "satisfaction": "ПОЛНАЯ УДОВЛЕТВОРЕННОСТЬ\nКЛИЕНТОВ",
+                "years": "ЛЕТ РЫНОЧНОЙ\nЭКСПЕРТИЗЫ",
+                "value": "ОБЪЕМ УПРАВЛЯЕМОЙ\nНЕДВИЖИМОСТИ",
+                "clients": "СЧАСТЛИВЫХ КЛИЕНТОВ\nПО ВСЕМУ МИРУ"
+            }
+        },
+        "services": {
+            "intro": "Почему выбирают нас",
+            "title": "Мы не просто юристы.\nМы ваши проводники в юридических тонкостях.",
+            "items": {
+                "1": "Общение на понятном языке.",
+                "2": "Всегда доступны – лично или онлайн.",
+                "3": "Пошаговое руководство.",
+                "4": "Превентивное мышление – не просто устранение последствий."
+            },
+            "cards": {
+                "legal": {
+                    "title": "Юридические Услуги",
+                    "desc": "Комплексная правовая поддержка всех ваших потребностей в недвижимости и бизнесе."
+                },
+                "goldenVisa": {
+                    "title": "Золотая Виза",
+                    "desc": "Получение ВНЖ через инвестиции в недвижимость."
+                },
+                "concierge": {
+                    "title": "Консьерж-сервис",
+                    "desc": "Премиальное управление стилем жизни и недвижимостью."
+                },
+                "insurance": {
+                    "title": "Страхование",
+                    "desc": "Индивидуальное покрытие для вашего спокойствия и защиты активов."
+                }
+            }
+        },
+        "areas": {
+            "title": "Исследуйте Побережье"
+        },
+        "news": {
+            "title": "Последние Новости",
+            "viewAll": "Смотреть все"
+        },
+        "property": {
+            "price": "Цена",
+            "beds": "Спальни",
+            "baths": "Ванные",
+            "size": "Площадь",
+            "built": "Построено",
+            "terrace": "Терраса",
+            "plot": "Участок",
+            "ref": "Ref",
+            "description": "Описание",
+            "features": "Особенности",
+            "location": "Расположение",
+            "similar": "Похожие объекты",
+            "contact": "Связаться с агентом",
+            "callForPrice": "Цена по запросу",
+            "badge": {
+                "new": "Новостройка",
+                "rent": "Аренда",
+                "secondary": "Вторичка"
+            },
+            "form": {
+                "interested": "Заинтересовались?",
+                "subtitle": "Запросите больше информации или назначьте просмотр.",
+                "name": "Ваше Имя",
+                "phone": "Телефон",
+                "email": "Email",
+                "message": "Сообщение",
+                "send": "Отправить запрос",
+                "defaultMessage": "Меня интересует {property}. Пожалуйста, предоставьте больше деталей."
+            },
+            "month": "/месяц"
+        },
+        "filters": {
+            "any": "Любой",
+            "all": "Все",
+            "min": "Мин",
+            "max": "Макс",
+            "reset": "Сброс",
+            "amenities": "Удобства",
+            "showResults": "Показать {count} объектов",
+            "resultsFound": "Найдено {count} объектов",
+            "rentTerm": {
+                "long": "Длительный срок",
+                "short": "Короткий срок"
+            },
+            "searchPlaceholder": "Поиск по названию или району...",
+            "recommended": "Рекомендуемое",
+            "priceRange": "Цена",
+            "bedrooms": "Спальни",
+            "type": "Тип недвижимости",
+            "more": "Меньше фильтров",
+            "clear": "Очистить",
+            "apply": "Применить",
+            "search": "Поиск",
+            "location": "Расположение",
+            "sort": {
+                "label": "Сортировка",
+                "newest": "Самые новые",
+                "priceAsc": "Цена (по возрастанию)",
+                "priceDesc": "Цена (по убыванию)"
+            },
+            "propertyTypes": {
+                "apartment": "Апартаменты",
+                "house": "Дом",
+                "plot": "Участок",
+                "commercial": "Коммерческая"
+            },
+            "studio": "Студия"
+        },
+        "pages": {
+            "newBuilding": {
+                "title": "Новостройки в Испании"
+            },
+            "liked": {
+                "titleShared": "Общий список",
+                "titleMy": "Избранное",
+                "savedCount": "Сохранено: {count}",
+                "share": "Поделиться",
+                "copied": "Ссылка скопирована!"
+            },
+            "areasPage": {
+                "title": "Откройте для себя\nЗолотой Берег",
+                "subtitle": "От бурной ночной жизни Марбельи до тихих холмов Бенахависа.\nНайдите свое идеальное место в самом сердце Коста-дель-Соль.",
+                "premiumTitle": "Премиальные локации",
+                "premiumDesc": "Эксклюзивные закрытые урбанизации",
+                "days": "Солнечных дней в году",
+                "explore": "Начать осмотр",
+                "exploreRegions": "Исследовать районы",
+                "propertiesCount": "{count} объектов"
+            },
+            "newsPage": {
+                "title": "Аналитика Рынка",
+                "subtitle": "Будьте в курсе последних тенденций, законодательных изменений и инвестиционных возможностей на рынке недвижимости Испании.",
+                "backToNews": "Назад к новостям",
+                "notFound": "Статья не найдена"
+            },
+            "secondary": {
+                "title": "Вторичная недвижимость в Испании"
+            },
+            "rent": {
+                "title": "Аренда в Испании"
+            }
+        },
+        "map": {
+            "clusterTitle": "Группа объектов",
+            "areaTitle": "Объекты в области",
+            "fullList": "Полный список",
+            "noProperties": "В этой области ничего не найдено.",
+            "loadMore": "Загрузить еще ({count} осталось)",
+            "drawArea": "Нарисовать область",
+            "clearArea": "Очистить область"
+        },
+        "footer": {
+            "tagline": "Ваш надежный проводник в поиске идеальной недвижимости в Испании. От эксклюзивных вилл до высокодоходных инвестиций.",
+            "discover": "Меню",
+            "company": "Компания",
+            "contact": "Контакты",
+            "rights": "Все права защищены",
+            "privacy": "Конфиденциальность",
+            "terms": "Условия",
+            "cookies": "Cookies"
+        },
+        "common": {
+            "readMore": "Читать далее",
+            "back": "Назад",
+            "from": "от",
+            "in": "в",
+            "lastUpdated": "Последнее обновление",
+            "loading": "Загрузка...",
+            "noResults": "Ничего не найдено",
+            "addToFav": "В избранное",
+            "removeFromFav": "Убрать из избранного"
+        },
+        "catalog": {
+            "title": "Получите доступ к нашему",
+            "highlight": "Эксклюзивному Каталогу",
+            "description": "Получите полную подборку премиальных новостроек и вторичной недвижимости прямо на ваш телефон через WhatsApp или Telegram.",
+            "phonePlaceholder": "Номер телефона",
+            "submit": "Получить Доступ",
+            "success": "Спасибо! Мы свяжемся с вами в ближайшее время.",
+            "recaptcha": "Защищено reCAPTCHA."
+        }
+    }
+}
