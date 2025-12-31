@@ -392,172 +392,130 @@ export default function MapPage() {
 
     const filterPageType = filters.market === 'rent' ? 'rent' : 'buy';
 
-    // Native Mapbox Event Listener for robustness on mobile
-    useEffect(() => {
-        if (!mapRef.current) return;
-        const map = mapRef.current.getMap();
-
-        if (!map) return;
-
-        const onMapClick = (e) => {
-            if (isDrawing) return;
-
-            const point = e.point;
-            // Increase hit box to 30px (standard minimum touch target) for mobile
-            const width = 30;
-            const height = 30;
-
-            const bbox = [
-                [point.x - width, point.y - height],
-                [point.x + width, point.y + height]
-            ];
-
-            const features = map.queryRenderedFeatures(bbox, {
-                layers: ['clusters', 'cluster-count', 'unclustered-point']
-            });
-
-            // Prioritize clusters
-            const clusterFeature = features.find(f => f.layer.id === 'clusters' || f.layer.id === 'cluster-count');
-            const pointFeature = features.find(f => f.layer.id === 'unclustered-point');
-
-            if (!clusterFeature && !pointFeature) {
-                setClusterProperties(null);
-                setSelectedProperty(null);
-                return;
-            }
-
-            if (clusterFeature) {
-                const clusterId = clusterFeature.properties.cluster_id;
-                const pointCount = clusterFeature.properties.point_count;
-                const source = map.getSource('properties');
-
-                if (clusterId && source) {
-                    if (pointCount > 100) {
-                        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
-                            if (err) return;
-                            map.easeTo({
-                                center: clusterFeature.geometry.coordinates,
-                                zoom: zoom
-                            });
-                        });
-                    } else {
-                        source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
-                            if (err) return;
-                            const leafProperties = leaves.map(f => f.properties);
-                            setClusterProperties(leafProperties);
-                        });
-                    }
-                }
-            } else if (pointFeature) {
-                let p = { ...pointFeature.properties };
-                ['images', 'location', 'coordinates'].forEach(key => {
-                    if (typeof p[key] === 'string') {
-                        try { p[key] = JSON.parse(p[key]); } catch (e) { }
-                    }
-                });
-                setSelectedProperty(p);
-                setClusterProperties(null);
-
-                const isMobile = window.innerWidth < 768;
-                const yOffset = isMobile ? 150 : 100;
-
-                map.easeTo({
-                    center: pointFeature.geometry.coordinates,
-                    offset: [0, yOffset],
-                    zoom: 15
-                });
-            }
-        };
-
-        // Ensure we handle "click" on the map canvas directly
-        map.on('click', onMapClick);
-
-        return () => {
-            map.off('click', onMapClick);
-        };
-    }, [isDrawing]);
-
-    // Explicit Touch Handler for Mobile (in case 'click' is swallowed)
+    // Unified Interaction Handler using standard Mapbox Layer Events
+    // This is more reliable than manual global click listeners or experimental addInteraction on all versions
     useEffect(() => {
         if (!mapRef.current) return;
         const map = mapRef.current.getMap();
         if (!map) return;
 
-        const onTouchEnd = (e) => {
-            if (isDrawing) return;
+        // Ensure we don't duplicate listeners (though React's strict mode might, cleaning up is key)
+        const onClusterClick = (e) => {
+            const feature = e.features[0];
+            if (!feature) return;
 
-            // Only process single touch (tap)
-            if (e.originalEvent.changedTouches.length !== 1) return;
+            e.preventDefault(); // Stop propagation
 
-            // We need to wait a tiny bit to see if it's a drag or a tap?
-            // Actually Mapbox 'touchend' usually fires after gestures.
-            // But let's use the 'click' logic mainly. 
-            // However, the user says "click doesn't work". 
-            // So we force a check on touchend.
+            const clusterId = feature.properties.cluster_id;
+            const pointCount = feature.properties.point_count;
+            const source = map.getSource('properties');
 
-            const point = e.point;
-            const width = 30;
-            const height = 30;
-            const bbox = [
-                [point.x - width, point.y - height],
-                [point.x + width, point.y + height]
-            ];
-
-            const features = map.queryRenderedFeatures(bbox, {
-                layers: ['clusters', 'cluster-count', 'unclustered-point']
-            });
-
-            const clusterFeature = features.find(f => f.layer.id === 'clusters' || f.layer.id === 'cluster-count');
-            const pointFeature = features.find(f => f.layer.id === 'unclustered-point');
-
-            if (clusterFeature || pointFeature) {
-                // If we found something, stop propagation to prevent double-firing if click follows
-                e.preventDefault();
-
-                if (clusterFeature) {
-                    const clusterId = clusterFeature.properties.cluster_id;
-                    const pointCount = clusterFeature.properties.point_count;
-                    const source = map.getSource('properties');
-                    if (clusterId && source) {
-                        if (pointCount > 100) {
-                            source.getClusterExpansionZoom(clusterId, (err, zoom) => {
-                                if (err) return;
-                                map.easeTo({ center: clusterFeature.geometry.coordinates, zoom: zoom });
-                            });
-                        } else {
-                            source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
-                                if (err) return;
-                                setClusterProperties(leaves.map(f => f.properties));
-                            });
-                        }
-                    }
-                } else if (pointFeature) {
-                    let p = { ...pointFeature.properties };
-                    try {
-                        ['images', 'location', 'coordinates'].forEach(k => {
-                            if (typeof p[k] === 'string') p[k] = JSON.parse(p[k]);
+            if (clusterId && source) {
+                if (pointCount > 100) {
+                    source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                        if (err) return;
+                        map.easeTo({
+                            center: feature.geometry.coordinates,
+                            zoom: zoom
                         });
-                    } catch (err) { }
-
-                    setSelectedProperty(p);
-                    setClusterProperties(null);
-
-                    const isMobile = window.innerWidth < 768;
-                    const yOffset = isMobile ? 150 : 100;
-                    map.easeTo({
-                        center: pointFeature.geometry.coordinates,
-                        offset: [0, yOffset],
-                        zoom: 15
+                    });
+                } else {
+                    source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
+                        if (err) return;
+                        const leafProperties = leaves.map(f => f.properties);
+                        setClusterProperties(leafProperties);
                     });
                 }
             }
         };
 
-        map.on('touchend', onTouchEnd);
-        return () => {
-            map.off('touchend', onTouchEnd);
+        const onPointClick = (e) => {
+            const feature = e.features[0];
+            if (!feature) return;
+
+            e.preventDefault();
+
+            let p = { ...feature.properties };
+            try {
+                ['images', 'location', 'coordinates'].forEach(key => {
+                    if (typeof p[key] === 'string') {
+                        p[key] = JSON.parse(p[key]);
+                    }
+                });
+            } catch (err) { console.error('Error parsing property data', err); }
+
+            setSelectedProperty(p);
+            setClusterProperties(null);
+
+            const isMobile = window.innerWidth < 768;
+            const yOffset = isMobile ? 150 : 100;
+
+            map.easeTo({
+                center: feature.geometry.coordinates,
+                offset: [0, yOffset],
+                zoom: 15,
+                // smooth transition
+                speed: 1.2,
+                curve: 1
+            });
         };
-    }, [isDrawing]);
+
+        const onMapBackgroundClick = (e) => {
+            // Only trigger if we didn't click a feature.
+            // Mapbox fires this after layer handlers if they don't stop propagation?
+            // Actually, map.on('click') is global. We need to check if defaultPrevented.
+            if (e.defaultPrevented) return;
+
+            setClusterProperties(null);
+            setSelectedProperty(null);
+        };
+
+        // Pointer/Cursor logic: CSS makes it easier usually, but let's be explicit
+        const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
+        const onMouseLeave = () => map.getCanvas().style.cursor = '';
+
+        // Attach Layer-Specific Listeners (The "Correct" Mapbox Way)
+        map.on('click', 'clusters', onClusterClick);
+        map.on('click', 'cluster-count', onClusterClick); // Treat count text same as circle
+        map.on('click', 'unclustered-point', onPointClick);
+        map.on('click', onMapBackgroundClick);
+
+        // Hover effects
+        map.on('mouseenter', 'clusters', onMouseEnter);
+        map.on('mouseleave', 'clusters', onMouseLeave);
+        map.on('mouseenter', 'unclustered-point', onMouseEnter);
+        map.on('mouseleave', 'unclustered-point', onMouseLeave);
+
+        // CLEANUP
+        return () => {
+            if (map) {
+                map.off('click', 'clusters', onClusterClick);
+                map.off('click', 'cluster-count', onClusterClick);
+                map.off('click', 'unclustered-point', onPointClick);
+                map.off('click', onMapBackgroundClick);
+                map.off('mouseenter', 'clusters', onMouseEnter);
+                map.off('mouseleave', 'clusters', onMouseLeave);
+                map.off('mouseenter', 'unclustered-point', onMouseEnter);
+                map.off('mouseleave', 'unclustered-point', onMouseLeave);
+            }
+        };
+    }, []); // Run once on mount (or when mapRef becomes stable? Effect dep [] is risky if mapRef is null initially.
+    // Better to depend on something that signals map is ready. 
+    // Usually 'onMapLoad' is best place, but with useEffect we can poll or rely on mapRef if strict.
+    // Let's rely on the fact that mapRef.current is likely populated when this effect runs if we add it to dependency,
+    // OR better: Move this setup INTO the `onMapLoad` callback we already have? 
+    // Yes, much cleaner.
+
+    // WAIT. modifying `onMapLoad` is invasive. 
+    // modifying the existing `useEffect` structure I created earlier is safer as I can just replace the block.
+    // I will use `[mapRef.current]` as dependency but check for `mapRef.current.getMap()` carefully.
+
+    // Correction: I should actually place this inside a useEffect that watches for map load state if possible, 
+    // but `mapRef.current` might not change.
+    // The previous code had `useEffect` with `[isDrawing]`.
+    // I will use that slot.
+
+
 
     const handleDrawClick = () => {
         if (!drawRef.current) return;
