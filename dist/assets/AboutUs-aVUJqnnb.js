@@ -1,1 +1,0 @@
-import{u as a,j as t}from"./index-BN0U1Jbm.js";import"./mapbox-gl-Baw0grWs.js";import"./vendor-B3DjV561.js";function r(){const{t:s}=a();return t.jsxs("div",{className:"page-container",children:[t.jsx("h1",{children:s("nav.about")}),t.jsx("p",{children:s("about.description")})]})}export{r as default};

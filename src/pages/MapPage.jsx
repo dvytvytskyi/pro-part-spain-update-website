@@ -353,6 +353,71 @@ export default function MapPage() {
         }
     }, [setFilters]);
 
+
+
+    // Setup interactions once map is fully loaded
+    const setupMapInteractions = (map) => {
+        const onClusterClick = (e) => {
+            const feature = e.features[0];
+            if (!feature) return;
+            e.preventDefault();
+            const clusterId = feature.properties.cluster_id;
+            const pointCount = feature.properties.point_count;
+            const source = map.getSource('properties');
+            if (clusterId && source) {
+                if (pointCount > 100) {
+                    source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                        if (err) return;
+                        map.easeTo({ center: feature.geometry.coordinates, zoom: zoom });
+                    });
+                } else {
+                    source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
+                        if (err) return;
+                        setClusterProperties(leaves.map(f => f.properties));
+                    });
+                }
+            }
+        };
+
+        const onPointClick = (e) => {
+            const feature = e.features[0];
+            if (!feature) return;
+            e.preventDefault();
+            let p = { ...feature.properties };
+            try {
+                ['images', 'location', 'coordinates'].forEach(key => {
+                    if (typeof p[key] === 'string') p[key] = JSON.parse(p[key]);
+                });
+            } catch (err) { }
+            setSelectedProperty(p);
+            setClusterProperties(null);
+
+            const isMobile = window.innerWidth < 768;
+            const yOffset = isMobile ? 150 : 100;
+            map.easeTo({
+                center: feature.geometry.coordinates, offset: [0, yOffset], zoom: 15, speed: 1.2, curve: 1
+            });
+        };
+
+        const onMapBackgroundClick = (e) => {
+            if (e.defaultPrevented) return;
+            setClusterProperties(null);
+            setSelectedProperty(null);
+        };
+
+        const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
+        const onMouseLeave = () => map.getCanvas().style.cursor = '';
+
+        map.on('click', 'clusters', onClusterClick);
+        map.on('click', 'cluster-count', onClusterClick);
+        map.on('click', 'unclustered-point', onPointClick);
+        map.on('click', onMapBackgroundClick);
+        map.on('mouseenter', 'clusters', onMouseEnter);
+        map.on('mouseleave', 'clusters', onMouseLeave);
+        map.on('mouseenter', 'unclustered-point', onMouseEnter);
+        map.on('mouseleave', 'unclustered-point', onMouseLeave);
+    };
+
     const onDelete = useCallback(() => {
         setPolygonFilter(null);
         const currentFilters = filtersRef.current;
@@ -371,9 +436,10 @@ export default function MapPage() {
         map.on('draw.create', onUpdate);
         map.on('draw.update', onUpdate);
         map.on('draw.delete', onDelete);
-        map.on('draw.modechange', (e) => {
-            setIsDrawing(e.mode === 'draw_polygon');
-        });
+        map.on('draw.modechange', (e) => setIsDrawing(e.mode === 'draw_polygon'));
+
+        // Initialize custom interactions
+        setupMapInteractions(map);
 
         // Restore polygon if exists in state (from URL)
         // Check local state or ref? Local state polygonFilter is correct here as it might be set by parsing URL effect
