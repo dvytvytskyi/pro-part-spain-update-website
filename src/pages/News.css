@@ -1,6 +1,6 @@
 .news-page {
-    padding-top: 100px;
-    /* Reduced specific padding */
+    padding-top: 130px;
+    /* Increased top padding */
     padding-bottom: 4rem;
     min-height: 100vh;
     background-color: #ffffff;
@@ -32,21 +32,19 @@
 
 .news-title {
     font-size: 2.5rem;
-    /* Match Home Page H2 size */
-    font-weight: 600;
-    /* Slightly lighter weight similar to Home headers */
-    color: #1a1a1a;
+    font-weight: 500;
+    /* Match Areas page title weight */
+    color: #313131;
+    /* Match Areas page title color */
     margin-bottom: 0.5rem;
-    /* Reduced margin */
     line-height: 1.2;
     letter-spacing: -0.02em;
 }
 
 .news-subtitle {
-    font-size: 1.1rem;
-    /* Match Home Page standard text size */
+    font-size: 1rem;
+    /* Match Areas page desc size */
     color: #666;
-    /* Standard secondary text color */
     max-width: 600px;
     font-weight: 400;
     line-height: 1.6;

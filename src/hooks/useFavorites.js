@@ -13,10 +13,46 @@ export default function useFavorites() {
         }
     });
 
+    // Listen for updates from other components/tabs
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
-        // Dispatch custom event for other components to sync if needed
-        window.dispatchEvent(new Event('favorites-updated'));
+        const handleStorageChange = () => {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                const newFavs = stored ? JSON.parse(stored) : [];
+
+                setFavorites(current => {
+                    if (JSON.stringify(current) === JSON.stringify(newFavs)) {
+                        return current;
+                    }
+                    return newFavs;
+                });
+            } catch (e) {
+                console.error('Failed to sync favorites', e);
+            }
+        };
+
+        window.addEventListener('favorites-updated', handleStorageChange);
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('favorites-updated', handleStorageChange);
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
+
+    // Persist changes and notify others
+    useEffect(() => {
+        try {
+            const currentStored = localStorage.getItem(STORAGE_KEY);
+            const newSerialized = JSON.stringify(favorites);
+
+            if (currentStored !== newSerialized) {
+                localStorage.setItem(STORAGE_KEY, newSerialized);
+                window.dispatchEvent(new Event('favorites-updated'));
+            }
+        } catch (e) {
+            console.error('Failed to save favorites', e);
+        }
     }, [favorites]);
 
     const toggleFavorite = useCallback((id) => {

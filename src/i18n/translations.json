@@ -185,7 +185,28 @@
                 "days": "Sunny days per year",
                 "explore": "Start Exploring",
                 "exploreRegions": "Explore Regions",
-                "propertiesCount": "{count} properties"
+                "propertiesCount": "{count} properties",
+                "faq": {
+                    "title": "Frequently Asked Questions",
+                    "items": [
+                        {
+                            "question": "Which area is best for families?",
+                            "answer": "Marbella and Estepona offer excellent international schools, safe communities, and family-friendly amenities."
+                        },
+                        {
+                            "question": "Is it a good time to invest in Costa del Sol?",
+                            "answer": "Yes, the market is showing strong growth with increasing demand for luxury properties and high rental yields."
+                        },
+                        {
+                            "question": "How do I choose the right area?",
+                            "answer": "Consider your lifestyle (golf, beach, nightlife) and budget. Our experts can guide you based on your specific needs."
+                        },
+                        {
+                            "question": "What about connectivity?",
+                            "answer": "The coast is well connected by A7/AP7 highways. Malaga Airport services the entire region with international flights."
+                        }
+                    ]
+                }
             },
             "newsPage": {
                 "title": "Real Estate Market Pulse",
@@ -408,7 +429,28 @@
                 "days": "Días de sol al año",
                 "explore": "Empezar a Explorar",
                 "exploreRegions": "Explorar Regiones",
-                "propertiesCount": "{count} propiedades"
+                "propertiesCount": "{count} propiedades",
+                "faq": {
+                    "title": "Preguntas Frecuentes",
+                    "items": [
+                        {
+                            "question": "¿Qué zona es mejor para familias?",
+                            "answer": "Marbella y Estepona ofrecen excelentes escuelas internacionales, comunidades seguras y servicios para familias."
+                        },
+                        {
+                            "question": "¿Es un buen momento para invertir?",
+                            "answer": "Sí, el mercado muestra un fuerte crecimiento con una demanda creciente de propiedades de lujo y altos rendimientos de alquiler."
+                        },
+                        {
+                            "question": "¿Cómo elijo la zona adecuada?",
+                            "answer": "Considere su estilo de vida (golf, playa, vida nocturna) y presupuesto. Nuestros expertos pueden guiarlo según sus necesidades."
+                        },
+                        {
+                            "question": "¿Qué pasa con la conectividad?",
+                            "answer": "La costa está bien conectada por las autopistas A7/AP7. El aeropuerto de Málaga da servicio a toda la región."
+                        }
+                    ]
+                }
             },
             "newsPage": {
                 "title": "Perspectivas del Mercado",
@@ -640,7 +682,28 @@
                 "days": "Солнечных дней в году",
                 "explore": "Начать осмотр",
                 "exploreRegions": "Исследовать районы",
-                "propertiesCount": "{count} объектов"
+                "propertiesCount": "{count} объектов",
+                "faq": {
+                    "title": "Часто Задаваемые Вопросы",
+                    "items": [
+                        {
+                            "question": "Какой район лучше для семей?",
+                            "answer": "Марбелья и Эстепона предлагают отличные международные школы, безопасные сообщества и удобства для семей."
+                        },
+                        {
+                            "question": "Стоит ли сейчас инвестировать?",
+                            "answer": "Да, рынок показывает сильный рост с увеличением спроса на элитную недвижимость и высокой доходностью от аренды."
+                        },
+                        {
+                            "question": "Как выбрать подходящий район?",
+                            "answer": "Учитывайте ваш образ жизни (гольф, пляж, ночная жизнь) и бюджет. Наши эксперты помогут подобрать идеальный вариант."
+                        },
+                        {
+                            "question": "Как обстоят дела с транспортом?",
+                            "answer": "Побережье хорошо связано автомагистралями A7/AP7. Аэропорт Малаги обслуживает весь регион международными рейсами."
+                        }
+                    ]
+                }
             },
             "newsPage": {
                 "title": "Аналитика Рынка",

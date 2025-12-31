@@ -285,6 +285,56 @@ export default function Home() {
                 </div>
             </section>
 
+            <section className="areas-section">
+                <div className="areas-header">
+                    <h2>{t('areas.title')}</h2>
+                </div>
+                <div className="areas-grid">
+                    <div className="area-card span-2" onClick={() => navigate('/areas/marbella')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087830/areas/marbella.jpg" alt="Marbella" />
+                        <div className="area-overlay">
+                            <span className="area-name">Marbella</span>
+                            <span className="area-location"><MapIcon size={14} /> Golden Mile</span>
+                        </div>
+                    </div>
+                    <div className="area-card tall" onClick={() => navigate('/areas/benahavis')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087832/areas/benahavis.jpg" alt="Benahavís" />
+                        <div className="area-overlay">
+                            <span className="area-name">Benahavís</span>
+                            <span className="area-location"><MapIcon size={14} /> La Zagaleta</span>
+                        </div>
+                    </div>
+                    <div className="area-card span-2" onClick={() => navigate('/areas/sotogrande')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087834/areas/sotogrande.jpg" alt="Sotogrande" />
+                        <div className="area-overlay">
+                            <span className="area-name">Sotogrande</span>
+                            <span className="area-location"><MapIcon size={14} /> Marina</span>
+                        </div>
+                    </div>
+                    <div className="area-card" onClick={() => navigate('/areas/estepona')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087831/areas/estepona.jpg" alt="Estepona" />
+                        <div className="area-overlay">
+                            <span className="area-name">Estepona</span>
+                            <span className="area-location"><MapIcon size={14} /> New Golden Mile</span>
+                        </div>
+                    </div>
+                    <div className="area-card" onClick={() => navigate('/areas/mijas')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087956/areas/mijas.png" alt="Mijas" />
+                        <div className="area-overlay">
+                            <span className="area-name">Mijas</span>
+                            <span className="area-location"><MapIcon size={14} /> Mijas Pueblo</span>
+                        </div>
+                    </div>
+                    <div className="area-card span-2" onClick={() => navigate('/areas/casares')}>
+                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087834/areas/casares.webp" alt="Casares" />
+                        <div className="area-overlay">
+                            <span className="area-name">Casares</span>
+                            <span className="area-location"><MapIcon size={14} /> Finca Cortesin</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="experience-section">
                 <div className="experience-container">
                     <div className="experience-content">
@@ -314,120 +364,41 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
             <section className="services-section">
                 <div className="services-container">
-                    <div className="services-top">
-                        <div className="services-intro">
-                            <span className="services-intro-label">{t('services.intro')}</span>
-                            <h2 className="services-title" style={{ whiteSpace: 'pre-line' }}>
-                                {t('services.title')}
-                            </h2>
-                        </div>
-                        <div className="services-list">
-                            <div className="service-list-item">
-                                <span>{t('services.items.1')}</span>
-                                <span className="num">01</span>
-                            </div>
-                            <div className="service-list-item">
-                                <span>{t('services.items.2')}</span>
-                                <span className="num">02</span>
-                            </div>
-                            <div className="service-list-item">
-                                <span>{t('services.items.3')}</span>
-                                <span className="num">03</span>
-                            </div>
-                            <div className="service-list-item">
-                                <span>{t('services.items.4')}</span>
-                                <span className="num">04</span>
-                            </div>
-                        </div>
+                    <div className="services-content">
+                        <span className="services-label">{t('services.intro')}</span>
+                        <h2 style={{ whiteSpace: 'pre-line' }}>{t('services.title')}</h2>
+                        <ul className="services-list">
+                            {[1, 2, 3, 4].map((item) => (
+                                <li key={item}>{t(`services.items.${item}`)}</li>
+                            ))}
+                        </ul>
                     </div>
-
-                    <div className="services-grid">
-                        <div className="service-card">
-                            <div className="service-icon-wrapper"><Scale size={24} /></div>
-                            <div>
-                                <h4>{t('services.cards.legal.title')}</h4>
-                                <p>{t('services.cards.legal.desc')}</p>
-                            </div>
+                    <div className="services-grid-wrapper">
+                        <div className="service-card dark">
+                            <Scale size={32} className="service-icon" />
+                            <h3>{t('services.cards.legal.title')}</h3>
+                            <p>{t('services.cards.legal.desc')}</p>
                         </div>
-                        <div className="service-card">
-                            <div className="service-icon-wrapper"><CreditCard size={24} /></div>
-                            <div>
-                                <h4>{t('services.cards.goldenVisa.title')}</h4>
-                                <p>{t('services.cards.goldenVisa.desc')}</p>
-                            </div>
+                        <div className="service-card light">
+                            <CreditCard size={32} className="service-icon" />
+                            <h3>{t('services.cards.goldenVisa.title')}</h3>
+                            <p>{t('services.cards.goldenVisa.desc')}</p>
                         </div>
-                        <div className="service-card">
-                            <div className="service-icon-wrapper"><Bell size={24} /></div>
-                            <div>
-                                <h4>{t('services.cards.concierge.title')}</h4>
-                                <p>{t('services.cards.concierge.desc')}</p>
-                            </div>
+                        <div className="service-card light">
+                            <Bell size={32} className="service-icon" />
+                            <h3>{t('services.cards.concierge.title')}</h3>
+                            <p>{t('services.cards.concierge.desc')}</p>
                         </div>
-                        <div className="service-card">
-                            <div className="service-icon-wrapper"><Shield size={24} /></div>
-                            <div>
-                                <h4>{t('services.cards.insurance.title')}</h4>
-                                <p>{t('services.cards.insurance.desc')}</p>
-                            </div>
+                        <div className="service-card dark">
+                            <Shield size={32} className="service-icon" />
+                            <h3>{t('services.cards.insurance.title')}</h3>
+                            <p>{t('services.cards.insurance.desc')}</p>
                         </div>
                     </div>
                 </div>
             </section>
-
-
-            <section className="areas-section">
-                <div className="areas-header">
-                    <h2>{t('areas.title')}</h2>
-                </div>
-                <div className="areas-grid">
-                    <div className="area-card span-2">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087830/areas/marbella.jpg" alt="Marbella" />
-                        <div className="area-overlay">
-                            <span className="area-name">Marbella</span>
-                            <span className="area-location"><MapIcon size={14} /> Golden Mile</span>
-                        </div>
-                    </div>
-                    <div className="area-card tall">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087832/areas/benahavis.jpg" alt="Benahavís" />
-                        <div className="area-overlay">
-                            <span className="area-name">Benahavís</span>
-                            <span className="area-location"><MapIcon size={14} /> La Zagaleta</span>
-                        </div>
-                    </div>
-                    <div className="area-card span-2">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087834/areas/sotogrande.jpg" alt="Sotogrande" />
-                        <div className="area-overlay">
-                            <span className="area-name">Sotogrande</span>
-                            <span className="area-location"><MapIcon size={14} /> Marina</span>
-                        </div>
-                    </div>
-                    <div className="area-card">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087831/areas/estepona.jpg" alt="Estepona" />
-                        <div className="area-overlay">
-                            <span className="area-name">Estepona</span>
-                            <span className="area-location"><MapIcon size={14} /> New Golden Mile</span>
-                        </div>
-                    </div>
-                    <div className="area-card">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087956/areas/mijas.png" alt="Mijas" />
-                        <div className="area-overlay">
-                            <span className="area-name">Mijas</span>
-                            <span className="area-location"><MapIcon size={14} /> Mijas Pueblo</span>
-                        </div>
-                    </div>
-                    <div className="area-card span-2">
-                        <img src="https://res.cloudinary.com/dgv0rxd60/image/upload/v1767087834/areas/casares.webp" alt="Casares" />
-                        <div className="area-overlay">
-                            <span className="area-name">Casares</span>
-                            <span className="area-location"><MapIcon size={14} /> Finca Cortesin</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section className="news-section">
                 <div className="news-header">
                     <h2>{t('news.title')}</h2>
@@ -451,13 +422,15 @@ export default function Home() {
                                     }}
                                 />
                             </div>
-                            <span className="news-date">
-                                {new Date(item.created_at).toLocaleDateString()}
-                            </span>
-                            <h3 className="news-title">{item['title_' + language] || item.title_en}</h3>
-                            <p className="news-excerpt">
-                                {item['description_' + language] || item.description_en}
-                            </p>
+                            <div className="home-news-content">
+                                <span className="news-date">
+                                    {new Date(item.created_at).toLocaleDateString()}
+                                </span>
+                                <h3 className="home-news-card-title">{item['title_' + language] || item.title_en}</h3>
+                                <p className="news-excerpt">
+                                    {item['description_' + language] || item.description_en}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>

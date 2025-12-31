@@ -214,19 +214,59 @@
         flex-direction: column-reverse;
         height: auto;
         max-height: 90vh;
-        overflow-y: auto;
+        /* Constraint height */
+        overflow: hidden;
+        /* Prevent container scroll, handle inner scroll */
     }
 
     .catalog-modal-right {
-        height: 200px;
+        height: 180px;
+        /* Reduced header height for better content space */
         flex: none;
+        /* Don't shrink/grow */
+        width: 100%;
+
+        /* Ensure close button stays reachable */
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
     }
 
     .catalog-modal-left {
-        padding: 2rem;
+        padding: 1.5rem;
+        /* Reduced padding */
+        overflow-y: auto;
+        /* Scroll info content only */
+        flex: 1;
+        /* Take remaining space */
+        min-height: 0;
+        /* Allow shrinking for scroll */
+        display: block;
+        /* Remove flex centering which can cause scroll issues */
+    }
+
+    /* Add some spacing for the content since we removed flex centering */
+    .catalog-modal-brand {
+        margin-top: 0.5rem;
     }
 
     .catalog-modal-title {
         font-size: 1.75rem;
+    }
+
+    /* Ensure form inputs don't break layout */
+    .phone-input-group {
+        flex-wrap: wrap;
+        /* Allow wrapping on very small screens */
+    }
+
+    .country-select-wrapper {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .phone-input {
+        flex: 2;
+        min-width: 160px;
     }
 }

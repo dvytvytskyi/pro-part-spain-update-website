@@ -1,0 +1,433 @@
+/* Page Layout */
+.marbella-page {
+    background-color: #fff;
+    padding-top: 130px;
+    padding-bottom: 4rem;
+}
+
+/* Header */
+.marbella-header {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* Align stats with the bottom of the title block */
+    gap: 2rem;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+    align-items: flex-start;
+    /* Ensure left alignment */
+}
+
+.header-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    min-width: 180px;
+    padding-bottom: 0.5rem;
+    /* Optically align with text baseline */
+}
+
+.mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.mini-stat span {
+    white-space: nowrap;
+}
+
+.back-link-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+    transition: color 0.3s ease;
+}
+
+.back-link-dark:hover {
+    color: #000;
+}
+
+.marbella-title {
+    font-size: 3.5rem;
+    /* Reduced from 5rem */
+    font-weight: 500;
+    margin: 0;
+    color: #1a1a1a;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-align: left;
+}
+
+.marbella-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 400;
+    margin-top: 0.5rem;
+    margin-left: 2px;
+    text-align: left;
+}
+
+/* Responsive adjustment for header */
+@media (max-width: 768px) {
+    .marbella-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .marbella-title {
+        font-size: 3rem;
+    }
+
+    .header-stats {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+}
+
+/* Hero Image */
+.marbella-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.marbella-hero-image-wrapper {
+    width: 100%;
+    height: 500px;
+    /* Fixed height for hero impact */
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    /* margin-bottom removed as it's on grid now */
+}
+
+/* Responsive adjustment for grid */
+@media (max-width: 900px) {
+    .marbella-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .marbella-hero-image-wrapper {
+        height: 350px;
+    }
+}
+
+.marbella-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .marbella-page {
+        padding-top: 100px;
+    }
+
+    .marbella-title {
+        font-size: 3rem;
+    }
+
+    .marbella-hero-image-wrapper {
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+/* Stats */
+.marbella-stats-section {
+    padding: 2rem 0 4rem;
+}
+
+.marbella-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.marbella-intro {
+    text-align: left;
+    max-width: 100%;
+    margin: 0 auto 0 0;
+    /* Left aligned relative to container if container is full width, or just text-align left */
+}
+
+.marbella-intro h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #313131;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin-bottom: 5rem;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+
+.marbella-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.m-stat-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    background: #f9f9f9;
+}
+
+.m-stat-icon {
+    display: inline-block;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.m-stat-card h3 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.m-stat-card p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Sub-areas Grid */
+.marbella-subareas {
+    padding: 2rem 0 6rem;
+    background: #fdfdfd;
+}
+
+.marbella-subareas .section-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    text-align: left;
+    /* Or center if preferred, usually left based on home page */
+}
+
+@media (max-width: 768px) {
+    .marbella-subareas .section-title {
+        font-size: 2.25rem;
+    }
+}
+
+.subareas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.subarea-card {
+    padding: 2.5rem;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+    min-height: 260px;
+    cursor: default;
+}
+
+.subarea-card:hover {
+    transform: translateY(-5px);
+}
+
+.subarea-card.dark {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.subarea-card.dark h3 {
+    color: white;
+    /* Explicitly set to white */
+}
+
+.subarea-card.dark .subarea-icon {
+    color: white;
+    /* For Lucide icons which use currentColor */
+    stroke: white;
+    /* Ensure stroke is white */
+}
+
+.subarea-card.dark p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.subarea-card.light {
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+}
+
+.subarea-card.light p {
+    color: #666;
+}
+
+.subarea-icon {
+    margin-bottom: auto;
+    stroke-width: 1.5px;
+}
+
+.subarea-card h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.subarea-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .subareas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .subareas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Properties */
+.marbella-properties {
+    padding: 2rem 0 6rem;
+    overflow: hidden;
+    /* Prevent horizontal scroll on body if list overflows */
+}
+
+.marbella-properties .section-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.marbella-properties-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    /* Space for scrollbar or shadow */
+    margin: 0 -1.5rem;
+    /* Negative margin to pull to edges on small screens */
+    padding-left: 1.5rem;
+    /* Padding to compensate negative margin */
+    padding-right: 1.5rem;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.marbella-properties-scroll::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.m-property-card {
+    min-width: 320px;
+    width: 320px;
+    background: white;
+    /* border: 1px solid #eee; */
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.m-property-card:hover {
+    transform: translateY(-5px);
+}
+
+.m-property-image-wrapper {
+    height: 240px;
+    width: 100%;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.m-property-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.m-property-content {
+    padding: 1.5rem 0.5rem 1rem 0;
+}
+
+.m-property-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.m-property-price {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Responsive properties */
+@media (max-width: 768px) {
+    .marbella-properties .section-title {
+        font-size: 2.5rem;
+    }
+
+    .m-property-card {
+        min-width: 280px;
+        width: 280px;
+    }
+}

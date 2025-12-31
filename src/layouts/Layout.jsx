@@ -148,7 +148,7 @@ export default function Layout() {
                     <Link to="/map" onClick={() => setMenuOpen(false)}>{t('nav.map')}</Link>
                     <Link to="/areas" onClick={() => setMenuOpen(false)}>{t('nav.areas')}</Link>
                     <Link to="/news" onClick={() => setMenuOpen(false)}>{t('nav.news')}</Link>
-                    <Link to="/contact" onClick={() => setMenuOpen(false)}>{t('nav.contact')}</Link>
+
                 </nav>
 
                 <div className="mobile-languages">

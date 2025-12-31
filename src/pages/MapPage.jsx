@@ -457,11 +457,19 @@ export default function MapPage() {
             setSelectedProperty(p);
             setClusterProperties(null); // Close the list view to focus on the popup
 
+            setClusterProperties(null); // Close the list view to focus on the popup
+
+            // Calculate offset based on screen height for better mobile experience
+            const isMobile = window.innerWidth < 768;
+            const yOffset = isMobile ? 150 : 100;
+
             // Center map on the property with a slight offset to accommodate the popup
-            mapRef.current.getMap().easeTo({
+            mapRef.current.getMap().flyTo({
                 center: feature.geometry.coordinates,
-                offset: [0, 100], // Shift center down by 100px so popup (anchored bottom) is in the middle
-                duration: 600
+                offset: [0, yOffset], // Shift point down so popup (above it) is centered
+                zoom: 15,
+                speed: 1.2,
+                curve: 1
             });
         }
     };
@@ -525,6 +533,13 @@ export default function MapPage() {
         window.open(url, '_blank');
     };
 
+    const onMouseEnter = useCallback(() => {
+        if (mapRef.current) mapRef.current.getCanvas().style.cursor = 'pointer';
+    }, []);
+    const onMouseLeave = useCallback(() => {
+        if (mapRef.current) mapRef.current.getCanvas().style.cursor = '';
+    }, []);
+
     return (
         <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
             <style>{`
@@ -572,10 +587,11 @@ export default function MapPage() {
                         z-index: 110;
                     }
                     .side-panel {
-                        top: 150px;
+                        top: 220px;
                         left: 10px;
-                        width: 300px;
-                        max-height: 50vh;
+                        right: 10px;
+                        width: auto;
+                        max-height: 40vh;
                         padding: 1rem;
                     }
                 }
@@ -673,7 +689,9 @@ export default function MapPage() {
                 attributionControl={false}
                 onLoad={onMapLoad}
                 onClick={handleMapClick}
-                interactiveLayerIds={['clusters', 'unclustered-point']}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                interactiveLayerIds={['clusters', 'unclustered-point', 'cluster-count']}
             >
                 <Source
                     id="properties"
@@ -722,14 +740,8 @@ export default function MapPage() {
                         type="circle"
                         filter={['!', ['has', 'point_count']]}
                         paint={{
-                            'circle-color': [
-                                'match',
-                                ['get', 'market'],
-                                ['new-building', 'off-plan'],
-                                '#D20C0C', // Red for new building
-                                '#000000'  // Black for others
-                            ],
-                            'circle-radius': 6,
+                            'circle-color': '#000000',
+                            'circle-radius': 8,
                             'circle-stroke-width': 2,
                             'circle-stroke-color': '#fff'
                         }}
@@ -745,9 +757,9 @@ export default function MapPage() {
                         closeButton={false}
                         closeOnClick={false} // We handle closing manually in handleMapClick to avoid event conflicts
                         offset={15}
-                        maxWidth="340px"
+                        maxWidth="300px"
                     >
-                        <div style={{ padding: '0', display: 'flex', flexDirection: 'column', width: '320px' }}>
+                        <div style={{ padding: '0', display: 'flex', flexDirection: 'column', width: '280px' }}>
                             <div style={{ position: 'relative', height: '180px', width: '100%' }}>
                                 <img
                                     src={(selectedProperty.images && selectedProperty.images[0]) || selectedProperty.image || 'https://via.placeholder.com/300x200?text=No+Image'}

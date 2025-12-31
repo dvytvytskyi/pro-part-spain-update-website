@@ -102,7 +102,8 @@ export default function Rent() {
                     ids: filters.ids && filters.ids.length ? filters.ids.join(',') : undefined,
                     town: finalTowns.length ? finalTowns : undefined,
                     beds: uiBeds.length ? uiBeds.map(b => b === 'studio' ? 0 : b) : undefined,
-                    beds_exact: uiBeds.length ? 'true' : undefined
+                    beds_exact: uiBeds.length ? 'true' : undefined,
+                    rent_type: filters.rentType
                 };
 
                 // Hint for Málaga narrow down

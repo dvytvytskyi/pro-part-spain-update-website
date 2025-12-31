@@ -7,6 +7,17 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react-map-gl', 'mapbox-gl']
   },
+  build: {
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'mapbox-gl': ['mapbox-gl', 'react-map-gl'],
+          'vendor': ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    }
+  },
   server: {
     proxy: {
       '/api': {

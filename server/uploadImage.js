@@ -13,17 +13,37 @@ cloudinary.v2.config({
 
 async function uploadImage() {
     try {
-        const imagePath = path.join(__dirname, '..', 'logo.svg');
+        // Check for command line arguments: node uploadImage.js <imagePathOrUrl> <publicId>
+        const args = process.argv.slice(2);
+        const inputSource = args[0];
+        const targetPublicId = args[1];
 
-        console.log('Uploading logo to Cloudinary...');
-        console.log('Image path:', imagePath);
+        let source = inputSource;
+        let publicId = targetPublicId || 'logo';
+        let folder = 'spain-real-estate';
 
-        const result = await cloudinary.v2.uploader.upload(imagePath, {
-            folder: 'spain-real-estate',
-            public_id: 'logo',
+        if (!source) {
+            // Default behavior if no args (backward compatibility or testing)
+            source = path.join(__dirname, '..', 'logo.svg');
+            console.log('No arguments provided. Using default logo path.');
+        }
+
+        console.log(`Uploading to Cloudinary...`);
+        console.log(`Source: ${source}`);
+        console.log(`Public ID: ${publicId}`);
+
+        // If publicId contains slashes, we can extract folder, but Cloudinary handles 'folder/name' in public_id too or we can set folder explicitly.
+        // Let's rely on public_id containing the folder if passed, or default to 'spain-real-estate' + public_id.
+        // If the user passes "areas/hero", we can just pass that as public_id and rely on cloud config.
+
+        const options = {
+            folder: publicId.includes('/') ? undefined : folder, // If ID has folder, don't double folder
+            public_id: publicId,
             overwrite: true,
-            resource_type: 'image'
-        });
+            resource_type: 'auto' // auto detection
+        };
+
+        const result = await cloudinary.v2.uploader.upload(source, options);
 
         console.log('✅ Image uploaded successfully!');
         console.log('URL:', result.secure_url);
