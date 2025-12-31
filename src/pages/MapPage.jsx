@@ -410,7 +410,23 @@ export default function MapPage() {
         if (!mapRef.current) return;
         if (isDrawing) return;
 
-        const features = event.features || [];
+        const map = mapRef.current.getMap();
+        const point = event.point;
+
+        // Mobile Hit Box: Define a small bounding box around the click point to make tapping easier
+        // 10px buffer on each side (total 20x20px hit area)
+        const width = 10;
+        const height = 10;
+
+        const bbox = [
+            [point.x - width, point.y - height],
+            [point.x + width, point.y + height]
+        ];
+
+        // Query features within this bbox for our interactive layers
+        const features = map.queryRenderedFeatures(bbox, {
+            layers: ['clusters', 'cluster-count', 'unclustered-point']
+        });
 
         // Find the specific feature types we care about
         // Prioritize clusters (text or circle)
@@ -429,7 +445,6 @@ export default function MapPage() {
             const pointCount = clusterFeature.properties.point_count;
 
             if (clusterId) {
-                const map = mapRef.current.getMap();
                 const source = map.getSource('properties');
 
                 if (pointCount > 100) {
@@ -696,7 +711,6 @@ export default function MapPage() {
                 onClick={handleMapClick}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
-                interactiveLayerIds={['clusters', 'unclustered-point', 'cluster-count']}
             >
                 <Source
                     id="properties"
