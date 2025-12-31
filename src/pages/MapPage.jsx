@@ -410,42 +410,49 @@ export default function MapPage() {
         if (!mapRef.current) return;
         if (isDrawing) return;
 
-        const feature = event.features?.[0];
+        const features = event.features || [];
 
-        // If clicked on empty space (no feature), close the cluster list AND popup
-        if (!feature) {
+        // Find the specific feature types we care about
+        // Prioritize clusters (text or circle)
+        const clusterFeature = features.find(f => f.layer.id === 'clusters' || f.layer.id === 'cluster-count');
+        const pointFeature = features.find(f => f.layer.id === 'unclustered-point');
+
+        // If clicked on empty space (no recognized feature), close the cluster list AND popup
+        if (!clusterFeature && !pointFeature) {
             setClusterProperties(null);
             setSelectedProperty(null);
             return;
         }
 
-        const clusterId = feature.properties.cluster_id;
+        if (clusterFeature) {
+            const clusterId = clusterFeature.properties.cluster_id;
+            const pointCount = clusterFeature.properties.point_count;
 
-        if (clusterId) {
-            const map = mapRef.current.getMap();
-            const source = map.getSource('properties');
-            const pointCount = feature.properties.point_count;
+            if (clusterId) {
+                const map = mapRef.current.getMap();
+                const source = map.getSource('properties');
 
-            if (pointCount > 100) {
-                // If more than 100, zoom in to break the cluster
-                source.getClusterExpansionZoom(clusterId, (err, zoom) => {
-                    if (err) return;
-                    map.easeTo({
-                        center: feature.geometry.coordinates,
-                        zoom: zoom
+                if (pointCount > 100) {
+                    // If more than 100, zoom in to break the cluster
+                    source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                        if (err) return;
+                        map.easeTo({
+                            center: clusterFeature.geometry.coordinates,
+                            zoom: zoom
+                        });
                     });
-                });
-            } else {
-                // If 100 or less (but >= 20 due to minPoints), open side menu
-                source.getClusterLeaves(clusterId, 100, 0, (err, features) => {
-                    if (err) return;
-                    const leaves = features.map(f => f.properties);
-                    setClusterProperties(leaves);
-                });
+                } else {
+                    // If 100 or less, open side menu
+                    source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
+                        if (err) return;
+                        const leafProperties = leaves.map(f => f.properties);
+                        setClusterProperties(leafProperties);
+                    });
+                }
             }
-        } else if (feature.layer.id === 'unclustered-point') {
+        } else if (pointFeature) {
             // Clicked a single point
-            let p = { ...feature.properties };
+            let p = { ...pointFeature.properties };
 
             // Parse complex fields that Mapbox might have stringified
             ['images', 'location', 'coordinates'].forEach(key => {
@@ -457,15 +464,13 @@ export default function MapPage() {
             setSelectedProperty(p);
             setClusterProperties(null); // Close the list view to focus on the popup
 
-            setClusterProperties(null); // Close the list view to focus on the popup
-
             // Calculate offset based on screen height for better mobile experience
             const isMobile = window.innerWidth < 768;
             const yOffset = isMobile ? 150 : 100;
 
             // Center map on the property with a slight offset to accommodate the popup
             mapRef.current.getMap().flyTo({
-                center: feature.geometry.coordinates,
+                center: pointFeature.geometry.coordinates,
                 offset: [0, yOffset], // Shift point down so popup (above it) is centered
                 zoom: 15,
                 speed: 1.2,
