@@ -392,6 +392,173 @@ export default function MapPage() {
 
     const filterPageType = filters.market === 'rent' ? 'rent' : 'buy';
 
+    // Native Mapbox Event Listener for robustness on mobile
+    useEffect(() => {
+        if (!mapRef.current) return;
+        const map = mapRef.current.getMap();
+
+        if (!map) return;
+
+        const onMapClick = (e) => {
+            if (isDrawing) return;
+
+            const point = e.point;
+            // Increase hit box to 30px (standard minimum touch target) for mobile
+            const width = 30;
+            const height = 30;
+
+            const bbox = [
+                [point.x - width, point.y - height],
+                [point.x + width, point.y + height]
+            ];
+
+            const features = map.queryRenderedFeatures(bbox, {
+                layers: ['clusters', 'cluster-count', 'unclustered-point']
+            });
+
+            // Prioritize clusters
+            const clusterFeature = features.find(f => f.layer.id === 'clusters' || f.layer.id === 'cluster-count');
+            const pointFeature = features.find(f => f.layer.id === 'unclustered-point');
+
+            if (!clusterFeature && !pointFeature) {
+                setClusterProperties(null);
+                setSelectedProperty(null);
+                return;
+            }
+
+            if (clusterFeature) {
+                const clusterId = clusterFeature.properties.cluster_id;
+                const pointCount = clusterFeature.properties.point_count;
+                const source = map.getSource('properties');
+
+                if (clusterId && source) {
+                    if (pointCount > 100) {
+                        source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                            if (err) return;
+                            map.easeTo({
+                                center: clusterFeature.geometry.coordinates,
+                                zoom: zoom
+                            });
+                        });
+                    } else {
+                        source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
+                            if (err) return;
+                            const leafProperties = leaves.map(f => f.properties);
+                            setClusterProperties(leafProperties);
+                        });
+                    }
+                }
+            } else if (pointFeature) {
+                let p = { ...pointFeature.properties };
+                ['images', 'location', 'coordinates'].forEach(key => {
+                    if (typeof p[key] === 'string') {
+                        try { p[key] = JSON.parse(p[key]); } catch (e) { }
+                    }
+                });
+                setSelectedProperty(p);
+                setClusterProperties(null);
+
+                const isMobile = window.innerWidth < 768;
+                const yOffset = isMobile ? 150 : 100;
+
+                map.easeTo({
+                    center: pointFeature.geometry.coordinates,
+                    offset: [0, yOffset],
+                    zoom: 15
+                });
+            }
+        };
+
+        // Ensure we handle "click" on the map canvas directly
+        map.on('click', onMapClick);
+
+        return () => {
+            map.off('click', onMapClick);
+        };
+    }, [isDrawing]);
+
+    // Explicit Touch Handler for Mobile (in case 'click' is swallowed)
+    useEffect(() => {
+        if (!mapRef.current) return;
+        const map = mapRef.current.getMap();
+        if (!map) return;
+
+        const onTouchEnd = (e) => {
+            if (isDrawing) return;
+
+            // Only process single touch (tap)
+            if (e.originalEvent.changedTouches.length !== 1) return;
+
+            // We need to wait a tiny bit to see if it's a drag or a tap?
+            // Actually Mapbox 'touchend' usually fires after gestures.
+            // But let's use the 'click' logic mainly. 
+            // However, the user says "click doesn't work". 
+            // So we force a check on touchend.
+
+            const point = e.point;
+            const width = 30;
+            const height = 30;
+            const bbox = [
+                [point.x - width, point.y - height],
+                [point.x + width, point.y + height]
+            ];
+
+            const features = map.queryRenderedFeatures(bbox, {
+                layers: ['clusters', 'cluster-count', 'unclustered-point']
+            });
+
+            const clusterFeature = features.find(f => f.layer.id === 'clusters' || f.layer.id === 'cluster-count');
+            const pointFeature = features.find(f => f.layer.id === 'unclustered-point');
+
+            if (clusterFeature || pointFeature) {
+                // If we found something, stop propagation to prevent double-firing if click follows
+                e.preventDefault();
+
+                if (clusterFeature) {
+                    const clusterId = clusterFeature.properties.cluster_id;
+                    const pointCount = clusterFeature.properties.point_count;
+                    const source = map.getSource('properties');
+                    if (clusterId && source) {
+                        if (pointCount > 100) {
+                            source.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                                if (err) return;
+                                map.easeTo({ center: clusterFeature.geometry.coordinates, zoom: zoom });
+                            });
+                        } else {
+                            source.getClusterLeaves(clusterId, 100, 0, (err, leaves) => {
+                                if (err) return;
+                                setClusterProperties(leaves.map(f => f.properties));
+                            });
+                        }
+                    }
+                } else if (pointFeature) {
+                    let p = { ...pointFeature.properties };
+                    try {
+                        ['images', 'location', 'coordinates'].forEach(k => {
+                            if (typeof p[k] === 'string') p[k] = JSON.parse(p[k]);
+                        });
+                    } catch (err) { }
+
+                    setSelectedProperty(p);
+                    setClusterProperties(null);
+
+                    const isMobile = window.innerWidth < 768;
+                    const yOffset = isMobile ? 150 : 100;
+                    map.easeTo({
+                        center: pointFeature.geometry.coordinates,
+                        offset: [0, yOffset],
+                        zoom: 15
+                    });
+                }
+            }
+        };
+
+        map.on('touchend', onTouchEnd);
+        return () => {
+            map.off('touchend', onTouchEnd);
+        };
+    }, [isDrawing]);
+
     const handleDrawClick = () => {
         if (!drawRef.current) return;
         if (polygonFilter) {
@@ -708,7 +875,6 @@ export default function MapPage() {
                 minZoom={9}
                 attributionControl={false}
                 onLoad={onMapLoad}
-                onClick={handleMapClick}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
             >
